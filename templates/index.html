@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Supermercado da Felicidade</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Supermercado da Felicidade</h1>
+        <form method="post" class="formulario">
+            <label>Nome do Produto:</label>
+            <input type="text" name="nome" required>
+            <label>Quantidade em Estoque:</label>
+            <input type="number" name="quantidade" required>
+            <label>Preço (R$):</label>
+            <input type="number" step="0.01" name="preco" required>
+            <input type="submit" value="Salvar">
+        </form>
+
+        <h2>Produtos Cadastrados</h2>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Quantidade</th>
+                <th>Preço</th>
+                <th>Ações</th>
+            </tr>
+            {% for produto in produtos %}
+            <tr>
+                <td>{{ produto[0] }}</td>
+                <td>{{ produto[1] }}</td>
+                <td>{{ produto[2] }}</td>
+                <td>R$ {{ "%.2f"|format(produto[3]) }}</td>
+                <td>
+                    <a href="/edit/{{ produto[0] }}">Editar</a> |
+                    <a href="/delete/{{ produto[0] }}">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>
