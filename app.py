@@ -6,6 +6,7 @@ app = Flask(__name__)
 DB_NAME = "database.db"
 
 def init_db():
+    # Inicializa o banco de dados criando a tabela 'produtos' se ela não existir.
     if not os.path.exists(DB_NAME):
         conn = sqlite3.connect(DB_NAME)
         cursor = conn.cursor()
@@ -22,6 +23,7 @@ def init_db():
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    # Rota principal que exibe os produtos e permite adicionar novos.
     if request.method == 'POST':
         nome = request.form['nome']
         quantidade = request.form['quantidade']
@@ -41,6 +43,7 @@ def index():
 
 @app.route('/edit/<int:produto_id>', methods=['GET', 'POST'])
 def edit(produto_id):
+    # Rota para edição de um produto existente.
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     if request.method == 'POST':
@@ -58,6 +61,7 @@ def edit(produto_id):
 
 @app.route('/delete/<int:produto_id>')
 def delete(produto_id):
+    # Rota para deletar um produto.
     conn = sqlite3.connect(DB_NAME)
     cursor = conn.cursor()
     cursor.execute("DELETE FROM produtos WHERE id = ?", (produto_id,))

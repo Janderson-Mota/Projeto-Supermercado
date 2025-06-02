@@ -1,4 +1,4 @@
-
+/* estilização geral da página principal e de edição  */
 body {
     font-family: Arial, sans-serif;
     background-color: #f8f9fa;
@@ -78,7 +78,7 @@ th {
     background-color: #c82333;
 }
 
-/* Modal */
+/* edição da função de verificação de deletar */
 .modal-overlay {
     position: fixed;
     top: 0;
